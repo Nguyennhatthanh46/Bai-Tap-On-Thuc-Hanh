@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+
+
+long long ucln(long long a, long long b) {
+    while (b != 0) {
+        long long temp = b;
+        b =a%b;
+        a = temp;
+    }
+    return a;
+}
+
+
+void rutgon(long long &a, long long &b) {
+    long long x = ucln(a, b);
+    a /= x;
+    b /= x;
+}
+
+int main() {
+    long long n;
+    cin >> n;
+
+    long long tuso = 0;
+    long long mauso = 1;
+    long long tong = 0;
+
+    for (long long i = 1; i <= n; i++) {
+        tong += i;
+        tuso = tuso*tong + mauso;
+        mauso*= tong;
+        rutgon(tuso, mauso);
+    }
+    if(tuso%mauso==0){
+        cout<<tuso/mauso;
+    } else cout << tuso << "/" << mauso << endl;
+    return 0;
+}
